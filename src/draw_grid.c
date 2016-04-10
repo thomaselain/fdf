@@ -6,37 +6,17 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:03:43 by telain            #+#    #+#             */
-/*   Updated: 2016/03/28 16:43:35 by telain           ###   ########.fr       */
+/*   Updated: 2016/04/10 15:01:09 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#define J j * e->size_j
+#define JN (j + 1) * e->size_j
+#define I i * e->size_i
+#define IN (i + 1) * e->size_i
 /*
-void	draw_grid(t_env *e)
-{
-	int		i;
-	int		j;
-	int		tab;
-
-	i = 0;
-	tab = 0;
-	while (i < e->heigh - 1)
-	{
-		j = 0;
-		while (j < e->len)
-		{
-			line(i * e->size_i, j * e->size_j - e->grid[i][j],
-					i * e->size_i, (j + 1) * e->size_j - e->grid[i][j + 1], e);
-			line(i * e->size_i, j * e->size_j - e->grid[i][j],
-					(i + 1) * e->size_i, j * e->size_j - e->grid[i + 1][j], e);
-			j++;
-		}
-		tab += 15;
-		i++;
-	}
-}
-*/
-void	draw_grid(t_env *e) //Ancienne methode de dessin
+void	draw_grid(t_env *e) // Dessin carthesien
 {
 	int		i;
 	int		j;
@@ -52,10 +32,39 @@ void	draw_grid(t_env *e) //Ancienne methode de dessin
 
 		while (j < e->len)
 		{
-			line(e->start[0] + i * e->size_i, e->start[1] + j * e->size_j - e->grid[i][j] * ratio + i * tab,
-					e->start[0] + (i + 1) * e->size_i, e->start[1] + (j) * e->size_j - e->grid[i + 1][j] * ratio + (i + 1) * tab, e);
-			line(e->start[0] + i * e->size_i, e->start[1] + j * e->size_j - e->grid[i][j] * ratio + i * tab,
-					e->start[0] + i * e->size_i, e->start[1] + (j + 1) * e->size_j - e->grid[i][j + 1] * ratio + i * tab, e);
+			line(e->start[0] + i * e->size_i,                                   //x1
+					e->start[1] + j * e->size_j - e->grid[i][j],                //y1
+					e->start[0] + (i + 1) * e->size_i,                          //x2
+					e->start[1] + (j) * e->size_j - e->grid[i + 1][j], e);      //y2
+			line(e->start[0] + i * e->size_i,                                   //x1
+					e->start[1] + j * e->size_j - e->grid[i][j],                //y1
+					e->start[0] + i * e->size_i,                                //x2
+					e->start[1] + (j + 1) * e->size_j - e->grid[i][j + 1], e);  //y2
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+}
+*/
+void	draw_grid(t_env *e)   // Methode du site de Guillaume (Dessin isometrique)
+{
+	int		i;
+	int		j;
+	int		ratio;
+	int		tab;
+
+	i = 0;
+	j = 0;
+	while (i < e->heigh - 1)
+	{
+
+		while (j < e->len)
+		{
+//			line(I - J + e->start[0], (I + J) / 3 + e->start[1]/* - e->grid[i][j]*/,
+//					(I - JN) + e->start[0], (I + JN) / 3 + e->start[1]/* - e->grid[i][j + 1]*/, e);
+			line(I - J + e->start[0], (I + J) / 3 + e->start[1]/* - e->grid[i][j]*/,
+					(IN - J) + e->start[0], (IN + J) / 3 + e->start[1]/* - e->grid[i + 1][j]*/, e);
 			j++;
 		}
 		i++;

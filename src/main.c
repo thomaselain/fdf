@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:10:44 by telain            #+#    #+#             */
-/*   Updated: 2016/03/28 16:46:27 by telain           ###   ########.fr       */
+/*   Updated: 2016/04/08 15:57:04 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	move(int key, t_env *e)
 	(key == 13 || key == 87) ? e->size_j += 5 : key;
 	(key == 1 || key == 86) ? e->size_i -= 5 : key;
 	(key == 1 || key == 91) ? e->size_j -= 5 : key;
+	if (key == 53)
+		exit (0);
 }
 
 void	clear(t_env *e)
@@ -32,7 +34,8 @@ void	clear(t_env *e)
 int		find_key(int key, t_env *e)
 {
 	if (key == 126 || key == 124 || key == 125 || key == 123 || key == 13 ||
-			key == 1 || key == 86 || key == 87 || key == 88 || key == 91)
+			key == 1 || key == 86 || key == 87 || key == 88 || key == 91 ||
+			key == 53)
 		move(key, e);
 	clear(e);
 	return (key);
@@ -50,7 +53,7 @@ int		draw(int keycode, void *e)
 void	new_env(t_env *e)
 {
 	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, 500, 500, "Fdf_42");
+	e->win = mlx_new_window(e->mlx, 900, 900, "Fdf_42");
 	e->len = 0;
 	e->heigh = 0;
 	e->lines = 0;
