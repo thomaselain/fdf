@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:10:44 by telain            #+#    #+#             */
-/*   Updated: 2016/04/08 15:57:04 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/12 18:17:59 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	move(int key, t_env *e)
 {
-	(key == 123) ? e->start[0] -= 10 : key;
-	(key == 124) ? e->start[0] += 10 : key;
-	(key == 125) ? e->start[1] += 10 : key;
-	(key == 126) ? e->start[1] -= 10 : key;
-	(key == 13 || key == 88) ? e->size_i += 5 : key;
-	(key == 13 || key == 87) ? e->size_j += 5 : key;
-	(key == 1 || key == 86) ? e->size_i -= 5 : key;
-	(key == 1 || key == 91) ? e->size_j -= 5 : key;
+	(key == 123) ? e->start[0] -= 20 : key;
+	(key == 124) ? e->start[0] += 20 : key;
+	(key == 125) ? e->start[1] += 20 : key;
+	(key == 126) ? e->start[1] -= 20 : key;
+	(key == 13 || key == 88) ? e->size_i += 1 : key;
+	(key == 13 || key == 87) ? e->size_j += 1 : key;
+	(key == 1 || key == 86) ? e->size_i -= 1 : key;
+	(key == 1 || key == 91) ? e->size_j -= 1 : key;
 	if (key == 53)
 		exit (0);
 }
@@ -57,10 +57,10 @@ void	new_env(t_env *e)
 	e->len = 0;
 	e->heigh = 0;
 	e->lines = 0;
-	e->start[0] = 150;
-	e->start[1] = 150;
-	e->size_i = 15;
-	e->size_j = 15;
+	e->start[0] = 400;
+	e->start[1] = 300;
+	e->size_i = 18;
+	e->size_j = 18;
 }
 
 int		main(int ac, char **av)
@@ -77,16 +77,10 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	new_env(&e);
-/*	if (ac == 2 && ft_isalnum(ft_atoi(av[2])))
-	{
-		e.size_i = ft_atoi(av[2]);
-		e.size_j = e.size_i;
-	}
-*/	e.file = av[1];
+	e.file = av[1];
 	e.fd = open(e.file, O_RDONLY, S_IREAD);
 	read_file(&e);
 	draw(0, &e);
-	print_grid(&e);
 	mlx_key_hook(e.win, draw, &e);
 //	mlx_expose_hook(e.win, draw, &e);
 	mlx_loop(e.mlx);

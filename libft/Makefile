@@ -6,14 +6,13 @@
 #    By: telain <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/26 17:08:50 by telain            #+#    #+#              #
-#    Updated: 2016/03/25 19:00:57 by telain           ###   ########.fr        #
+#    Updated: 2016/05/12 18:01:10 by telain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GREEN = "\033[0;32m"
 NOCOLOR = "\033[0m"
 NAME = libft.a
-HEADERS = includes/libft.h
 WFLAGS= -Wall -Werror -Wextra
 SRC_DIR = src
 SRC_BASE = ft_putstr.c ft_putchar.c ft_strdup.c ft_strlcpy.c ft_strlcat.c\
@@ -36,8 +35,6 @@ HEADERS	= -Iincludes/
 
 OBJECTS	= $(subst .c,.o,$(SRC))
 
-WFLAGS	= -g -Wall -Werror -Wextra
-
 CC		= gcc
 
 .SILENT:
@@ -55,7 +52,7 @@ $(NAME): $(OBJECTS)
 	printf "    |  / /___/ / /_/ / __/ /_   / /___/ /_/ / / / / / / /_/ / / /  __/ /_/ /   |\n"
 	printf "    | /_____/_/_.___/_/  \__/   \____/\____/_/ /_/ /_/ .___/_/_/\___/\__,_/    |\n"
 	printf "    |                                               /_/                        |\n"
-	printf "    |__________________________________________________________________________|\n\n\n\e[0m"
+	printf "    .__________________________________________________________________________.\n\n\n\e[0m"
 
 %.o: %.c
 	@$(CC) $(WFLAGS) $(HEADERS) -c -o $@ $^

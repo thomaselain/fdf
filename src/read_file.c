@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 18:43:49 by telain            #+#    #+#             */
-/*   Updated: 2016/03/28 22:57:15 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/09 15:16:33 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		get_lengh(char *line)
 		while (line[i] == ' ')
 			i++;
 	}
-	ft_putnendl(len);
 	return (len);
 }
 
@@ -58,23 +57,19 @@ void	read_file(t_env *e)
 {
 	char	**pline;
 	char	*line;
-	int		i;
 	int		n;
 
-	i = 0;
 	n = 0;
 	pline = &line;
 	e->grid = (int**)ft_memalloc(sizeof(int*) * 500);
 	e->fd = open(e->file, O_RDONLY, S_IREAD);
-	get_next_line(e->fd, pline);
-	e->len = get_lengh(line);
 	while (get_next_line(e->fd, pline) > 0)
 	{
+		e->len = get_lengh(line);
 		e->grid[n] = (int*)ft_memalloc(sizeof(int) * (e->len + 1));
 		create_grid(e, line, n);
 		n++;
 		e->heigh++;
 		ft_putendl(line);
 	}
-	i = 0;
 }
