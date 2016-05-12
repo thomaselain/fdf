@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 18:43:49 by telain            #+#    #+#             */
-/*   Updated: 2016/05/09 15:16:33 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/12 23:49:41 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ void	create_grid(t_env *e, char *line, int n)
 	j = 0;
 	while (line[i])
 	{
-		while (ft_isalnum(line[i + len]) == 1)
+		while (ft_isalnum(line[i + len]) == 1 || line[i + len] == '-')
 			len++;
-		e->grid[n][j] = ft_atoi(ft_strsub(line, i, len));
+		e->grid[n][j++] = ft_atoi(ft_strsub(line, i, len));
 		len = 0;
-		j++;
-		while (line[i] <= '9' && line[i] >= '0')
+		while ((line[i] <= '9' && line[i] >= '0') || line[i] == '-')
 			i++;
 		while (line[i] == ' ' || line[i] == '\n')
 			i++;

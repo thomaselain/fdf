@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:10:44 by telain            #+#    #+#             */
-/*   Updated: 2016/05/12 18:17:59 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/13 00:03:27 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	move(int key, t_env *e)
 	(key == 124) ? e->start[0] += 20 : key;
 	(key == 125) ? e->start[1] += 20 : key;
 	(key == 126) ? e->start[1] -= 20 : key;
-	(key == 13 || key == 88) ? e->size_i += 1 : key;
-	(key == 13 || key == 87) ? e->size_j += 1 : key;
-	(key == 1 || key == 86) ? e->size_i -= 1 : key;
-	(key == 1 || key == 91) ? e->size_j -= 1 : key;
+	(key == 13) ? e->size_i += 1 : key;
+	(key == 13) ? e->size_j -= 1 : key;
+	(key == 1) ? e->size_i -= 1 : key;
+	(key == 1) ? e->size_j += 1 : key;
 	if (key == 53)
 		exit (0);
 }
@@ -34,8 +34,7 @@ void	clear(t_env *e)
 int		find_key(int key, t_env *e)
 {
 	if (key == 126 || key == 124 || key == 125 || key == 123 || key == 13 ||
-			key == 1 || key == 86 || key == 87 || key == 88 || key == 91 ||
-			key == 53)
+			key == 1 || key == 14 || key == 2 || key == 53)
 		move(key, e);
 	clear(e);
 	return (key);
@@ -53,14 +52,14 @@ int		draw(int keycode, void *e)
 void	new_env(t_env *e)
 {
 	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, 900, 900, "Fdf_42");
+	e->win = mlx_new_window(e->mlx, 1100, 1100, "Fdf_42");
 	e->len = 0;
 	e->heigh = 0;
 	e->lines = 0;
-	e->start[0] = 400;
-	e->start[1] = 300;
+	e->start[0] = 50;
+	e->start[1] = 450;
 	e->size_i = 18;
-	e->size_j = 18;
+	e->size_j = -18;
 }
 
 int		main(int ac, char **av)
@@ -69,11 +68,11 @@ int		main(int ac, char **av)
 	int		i;
 
 	i = 0;
-	if (ac != 2)
+	if (ac < 2)
 	{
 		ft_putstr("Usage : ");
 		ft_putstr(av[0]);
-		ft_putstr(" <filename>\n"/*[ size ]\n*/);
+		ft_putstr(" <filename> [size]\n");
 		return (0);
 	}
 	new_env(&e);

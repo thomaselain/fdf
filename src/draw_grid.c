@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:03:43 by telain            #+#    #+#             */
-/*   Updated: 2016/05/12 18:15:23 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/12 23:52:41 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	draw_grid(t_env *e)
 			line(e);
 */
 			e->x1 = (I - J) + e->start[0];
-			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * 3;
+			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * 5;
 			e->x2 = (I - JN) + e->start[0];
-			e->y2 = (I + JN) / 3 + e->start[1] - e->grid[i][j + 1] * 3;
+			e->y2 = (I + JN) / 3 + e->start[1] - e->grid[i][j + 1] * 5;
 			line(e);					//Test pour la grille en isometrique.
 			e->x1 = (I - J) + e->start[0];
-			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * 3;
+			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * 5;
 			e->x2 = (IN - J) + e->start[0];
-			e->y2 = (IN + J) / 3 + e->start[1] - e->grid[i + 1][j] * 3;
+			e->y2 = (IN + J) / 3 + e->start[1] - e->grid[i + 1][j] * 5;
 			line(e);
 
 
