@@ -6,13 +6,13 @@
 /*   By: telain <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 19:20:35 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 18:24:02 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/27 18:33:27 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	oct_1(t_env *e, int dx, int dy)
+void	oct_1(t_env *e, int dx, int dy, int color)
 {
 	int		f;
 
@@ -20,7 +20,7 @@ void	oct_1(t_env *e, int dx, int dy)
 	dy *= 2;
 	while (42)
 	{
-		mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, 0xFFFFFF);
+		mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, color);
 		if (e->x1++ == e->x2)
 			break ;
 		if ((f -= dy) < 0)

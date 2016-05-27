@@ -6,7 +6,7 @@
 /*   By: telain <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 16:54:55 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 18:21:38 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/27 19:21:11 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void		line(t_env *e, int color)
 				if (dy > 0)
 				{
 					if (dx >= dy)
-                        oct_1(e, dx, dy);
+                        oct_1(e, dx, dy, color);
 					else
-                        oct_2(e, dx, dy);
+                        oct_2(e, dx, dy, color);
 				}
 				else
 				{
 					if (dx >= -dy)
-                        oct_8(e, dx, dy);
+                        oct_8(e, dx, dy, color);
 					else
-                        oct_7(e, dx, dy);
+                        oct_7(e, dx, dy, color);
 				}
 			}
 			else
@@ -51,16 +51,16 @@ void		line(t_env *e, int color)
 				if (dy > 0)
 				{
 					if (-dx >= dy)
-                        oct_4(e, dx, dy);
+                        oct_4(e, dx, dy, color);
 					else
-                        oct_3(e, dx, dy);
+                        oct_3(e, dx, dy, color);
 				}
 				else
 				{
 					if (dx <= dy)
-                        oct_5(e, dx, dy);
+                        oct_5(e, dx, dy, color);
                     else
-                        oct_6(e, dx, dy);
+                        oct_6(e, dx, dy, color);
 				}
 			}
 			else

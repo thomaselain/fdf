@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:03:43 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 18:23:46 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/27 20:12:27 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,26 @@ int		choose_color(int h)
 {
 	int		color;
 
-	color =  0x000000;
-	color = (h <= 0) ? 0x0000ff : color;
-	color = (h <= 5) ? 0x00ff00 : color;
-	color = (h <= 15) ? 0xa5a2a2 : color;
+	if (h < -20)
+		color = 0x03224c;
+	else if (h < 1)
+		color = 0x0131b4;
+	else if (h <= 2)
+		color = 0xf6dc12;
+	else if (h <= 20)
+		color = 0x3a9d23;
+	else if (h <= 30)
+		color = 0x88421d;
+	else
+		color = 0xffffff;
 	return (color);
 }
 
 void	write_opt(t_env *e)
 {
-	mlx_string_put(e->mlx, e->win, 0, 0, 0xffffff, "w ----------> zoom in");
-	mlx_string_put(e->mlx, e->win, 0, 10, 0xffffff, "s ----------> zoom out");
-	mlx_string_put(e->mlx, e->win, 0, 20, 0xffffff, "arrow keys -> move");
+	mlx_string_put(e->mlx, e->win, 0, 0, 0xffffff, "w/s --------> zoom in/out");
+	mlx_string_put(e->mlx, e->win, 0, 12, 0xffffff, "arrow keys -> move");
+	mlx_string_put(e->mlx, e->win, 0, 24, 0xffffff, "+/- --------> change height");
 }
 
 void	draw_grid(t_env *e)
@@ -41,6 +49,7 @@ void	draw_grid(t_env *e)
     {
         e->size_i = WIN_X / (e->len * 1.5);
         e->size_j = -e->size_i;
+		e->height = 1;
         e->start[0] = -e->len + e->size_i * 2;
         e->start[1] = 400;
     }
@@ -50,14 +59,14 @@ void	draw_grid(t_env *e)
 		while (++j < e->len - 1)
 		{
 			e->x1 = (I - J) + e->start[0];
-			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * 3;
+			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * e->height;
 			e->x2 = (I - JN) + e->start[0];
-			e->y2 = (I + JN) / 3 + e->start[1] - e->grid[i][j + 1] * 3;
+			e->y2 = (I + JN) / 3 + e->start[1] - e->grid[i][j + 1] * e->height;
 			line(e, choose_color(e->grid[i][j]));
 			e->x1 = (I - J) + e->start[0];
-			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * 3;
+			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * e->height;
 			e->x2 = (IN - J) + e->start[0];
-			e->y2 = (IN + J) / 3 + e->start[1] - e->grid[i + 1][j] * 3;
+			e->y2 = (IN + J) / 3 + e->start[1] - e->grid[i + 1][j] * e->height;
 			line(e, choose_color(e->grid[i][j]));
 		}
 	}

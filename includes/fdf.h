@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:32:28 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 18:21:56 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/27 19:55:03 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	char		*file;
+	int			height;
 	int			fd;
 	int			**grid;
 	int			lines;
@@ -77,14 +78,14 @@ void			move(int key, t_env *e);
 /*
 ** oct_1-8.c
 */
-void			oct_1(t_env *e, int dx, int dy);
-void			oct_2(t_env *e, int dx, int dy);
-void			oct_3(t_env *e, int dx, int dy);
-void			oct_4(t_env *e, int dx, int dy);
-void			oct_5(t_env *e, int dx, int dy);
-void			oct_6(t_env *e, int dx, int dy);
-void			oct_7(t_env *e, int dx, int dy);
-void			oct_8(t_env *e, int dx, int dy);
+void			oct_1(t_env *e, int dx, int dy, int color);
+void			oct_2(t_env *e, int dx, int dy, int color);
+void			oct_3(t_env *e, int dx, int dy, int color);
+void			oct_4(t_env *e, int dx, int dy, int color);
+void			oct_5(t_env *e, int dx, int dy, int color);
+void			oct_6(t_env *e, int dx, int dy, int color);
+void			oct_7(t_env *e, int dx, int dy, int color);
+void			oct_8(t_env *e, int dx, int dy, int color);
 
 /*
 ** draw_grid.c

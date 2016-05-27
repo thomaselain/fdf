@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void	oct_7(t_env *e, int dx, int dy)
+void	oct_7(t_env *e, int dx, int dy, int color)
 {
     int		f;
     
@@ -20,7 +20,7 @@ void	oct_7(t_env *e, int dx, int dy)
     dx *= 2;
     while (42)
     {
-        mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, 0xFFFFFF);
+        mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, color);
         if (e->y1-- == e->y2)
             break ;
         if ((f += dx) > 0)
