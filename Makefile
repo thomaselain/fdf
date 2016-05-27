@@ -6,7 +6,7 @@
 #    By: telain <telain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/22 17:19:39 by telain            #+#    #+#              #
-#    Updated: 2016/05/11 20:09:53 by telain           ###   ########.fr        #
+#    Updated: 2016/05/24 17:51:11 by telain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC =	main.c\
 		read_file.c\
 		draw_grid.c\
 		line.c\
+		input.c\
 		oct_1.c oct_2.c oct_3.c oct_4.c oct_5.c oct_6.c oct_7.c oct_8.c\
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))

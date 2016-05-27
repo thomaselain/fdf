@@ -6,13 +6,13 @@
 /*   By: telain <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 16:54:55 by telain            #+#    #+#             */
-/*   Updated: 2016/05/12 18:39:08 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/27 18:21:38 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		line(t_env *e)
+void		line(t_env *e, int color)
 {
 	int		dx;
 	int		dy;
@@ -41,7 +41,7 @@ void		line(t_env *e)
 			else
 			{
 				while (e->x1++ != e->x2)
-					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, 0xFFFFFF);
+					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, color);
 			}
 		}
 		else
@@ -66,7 +66,7 @@ void		line(t_env *e)
 			else
 			{
 				while (e->x1-- != e->x2)
-					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, 0xFFFFFF);
+					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, color);
 			}
 		}
 	}
@@ -77,12 +77,12 @@ void		line(t_env *e)
 			if (dy > 0)
 			{
 				while (e->y1++ != e->y2)
-					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, 0xFFFFFF);
+					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, color);
 			}
 			else
 			{
 				while (e->y1-- != e->y2)
-					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, 0xFFFFFF);
+					mlx_pixel_put(e->mlx, e->win, (int)e->x1, (int)e->y1, color);
 			}
 		}
 	}

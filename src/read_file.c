@@ -6,11 +6,31 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 18:43:49 by telain            #+#    #+#             */
-/*   Updated: 2016/05/12 23:49:41 by telain           ###   ########.fr       */
+/*   Updated: 2016/05/24 18:17:17 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	check_file_type(t_env *e)
+{
+	char	*line;
+	int		i;
+
+	e->fd = open(e->file, O_RDONLY, S_IREAD);
+	while (get_next_line(e->fd, &line) > 0)
+	{
+		i = -1;
+		while (line[++i])
+		{
+			if (ft_isalnum(line[i]) == 0 && line[i] != ' ')
+			{
+				ft_putstr("Wrong file, please choose a \".fdf\" file\n");
+				exit (0);
+			}
+		}
+	}
+}
 
 int		get_lengh(char *line)
 {
@@ -54,21 +74,20 @@ void	create_grid(t_env *e, char *line, int n)
 
 void	read_file(t_env *e)
 {
-	char	**pline;
 	char	*line;
 	int		n;
 
 	n = 0;
-	pline = &line;
 	e->grid = (int**)ft_memalloc(sizeof(int*) * 500);
+	//check_file_type(e);
 	e->fd = open(e->file, O_RDONLY, S_IREAD);
-	while (get_next_line(e->fd, pline) > 0)
+	while (get_next_line(e->fd, &line) > 0)
 	{
 		e->len = get_lengh(line);
 		e->grid[n] = (int*)ft_memalloc(sizeof(int) * (e->len + 1));
-		create_grid(e, line, n);
-		n++;
+		create_grid(e, line, n++);
 		e->heigh++;
 		ft_putendl(line);
 	}
+	close(e->fd);
 }
