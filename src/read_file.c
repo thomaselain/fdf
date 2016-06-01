@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 18:43:49 by telain            #+#    #+#             */
-/*   Updated: 2016/05/24 18:17:17 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/01 15:18:02 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@ void	check_file_type(t_env *e)
 		i = -1;
 		while (line[++i])
 		{
-			if (ft_isalnum(line[i]) == 0 && line[i] != ' ')
+			if (ft_isalnum(line[i]) == 0 && line[i] != ' ' && line[i] != '-')
 			{
 				ft_putstr("Wrong file, please choose a \".fdf\" file\n");
-				exit (0);
+				exit(0);
+			}
+			else if (ft_strlen(line) > 2000)
+			{
+				ft_putstr("File too big, please choose a smaller one\n");
+				exit(0);
 			}
 		}
 	}
@@ -79,7 +84,7 @@ void	read_file(t_env *e)
 
 	n = 0;
 	e->grid = (int**)ft_memalloc(sizeof(int*) * 500);
-	//check_file_type(e);
+	check_file_type(e);
 	e->fd = open(e->file, O_RDONLY, S_IREAD);
 	while (get_next_line(e->fd, &line) > 0)
 	{

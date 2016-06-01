@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:10:44 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 20:16:26 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/01 15:31:50 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	clear(t_env *e)
 int		draw(int keycode, void *e)
 {
 	find_key(keycode, e);
-	draw_grid(e); 
+	draw_grid(e);
 	return (0);
 }
 
@@ -56,7 +56,6 @@ int		main(int ac, char **av)
 	read_file(&e);
 	draw(0, &e);
 	mlx_key_hook(e.win, draw, &e);
-//	mlx_expose_hook(e.win, draw, &e);
 	mlx_loop(e.mlx);
 	return (0);
 }

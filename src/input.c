@@ -6,7 +6,7 @@
 /*   By: telain <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 17:38:26 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 20:16:55 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/01 15:46:28 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int		find_key(int key, t_env *e)
 {
 	if (key == 126 || key == 125 || key == 124 || key == 123 || key == 13 ||
-			key == 1 || key == 14 || key == 2 || key == 53 || key == 27 ||
-			key == 24)
+			key == 1 || key == 14 || key == 2 || key == 53 || key == 78 ||
+			key == 69)
 		move(key, e);
 	clear(e);
 	return (key);
@@ -27,14 +27,14 @@ void	move(int key, t_env *e)
 	if (key == 53)
 	{
 		mlx_destroy_window(e->mlx, e->win);
-		exit (0);
+		exit(0);
 	}
 	(key == 123) ? e->start[0] += 20 : key;
 	(key == 124) ? e->start[0] -= 20 : key;
 	(key == 125) ? e->start[1] -= 20 : key;
 	(key == 126) ? e->start[1] += 20 : key;
-	(key == 27) ? e->height-- : key;
-	(key == 24) ? e->height++ : key;
+	(key == 78) ? e->height-- : key;
+	(key == 69) ? e->height++ : key;
 	(key == 13) ? e->size_i += 1 : key;
 	(key == 13) ? e->size_j -= 1 : key;
 	(key == 13) ? e->start[0] -= 15 : key;

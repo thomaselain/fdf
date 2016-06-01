@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:32:28 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 19:55:03 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/01 15:46:40 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 # include <math.h>
 # include "../includes/libft.h"
 # include "mlx.h"
+# define WHITE 0xffffff
 # define I i * e->size_i
 # define J j * e->size_j
 # define IN (i + 1) * e->size_i
 # define JN (j + 1) * e->size_j
-# define WIN_X 1000
-# define WIN_Y 600
+# define WIN_X 1400
+# define WIN_Y 1000
 
 typedef struct	s_env
 {
@@ -60,6 +61,9 @@ void			print_grid(t_env *e);
 ** line.c
 */
 void			line(t_env *e, int color);
+void			line2(t_env *e, int color, int dx, int dy);
+void			line3(t_env *e, int color, int dx, int dy);
+void			line4(t_env *e, int color, int dx, int dy);
 
 /*
 ** read_file.c

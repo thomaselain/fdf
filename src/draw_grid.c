@@ -6,11 +6,20 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:03:43 by telain            #+#    #+#             */
-/*   Updated: 2016/05/27 20:12:27 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/01 14:48:44 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	init_opt(t_env *e)
+{
+	e->size_i = WIN_X / (e->len * 1.5);
+	e->size_j = -e->size_i;
+	e->height = 1;
+	e->start[0] = -e->len + e->size_i * 2;
+	e->start[1] = 400;
+}
 
 int		choose_color(int h)
 {
@@ -33,9 +42,9 @@ int		choose_color(int h)
 
 void	write_opt(t_env *e)
 {
-	mlx_string_put(e->mlx, e->win, 0, 0, 0xffffff, "w/s --------> zoom in/out");
-	mlx_string_put(e->mlx, e->win, 0, 12, 0xffffff, "arrow keys -> move");
-	mlx_string_put(e->mlx, e->win, 0, 24, 0xffffff, "+/- --------> change height");
+	mlx_string_put(e->mlx, e->win, 0, 0, WHITE, "w/s --------> zoom in/out");
+	mlx_string_put(e->mlx, e->win, 0, 12, WHITE, "arrow keys -> move");
+	mlx_string_put(e->mlx, e->win, 0, 24, WHITE, "+/- --------> change height");
 }
 
 void	draw_grid(t_env *e)
@@ -43,16 +52,10 @@ void	draw_grid(t_env *e)
 	int		i;
 	int		j;
 
-    i = -1;
+	i = -1;
 	write_opt(e);
-    if (e->size_i == 0 && e->size_j == 0)
-    {
-        e->size_i = WIN_X / (e->len * 1.5);
-        e->size_j = -e->size_i;
-		e->height = 1;
-        e->start[0] = -e->len + e->size_i * 2;
-        e->start[1] = 400;
-    }
+	if (e->size_i == 0 && e->size_j == 0)
+		init_opt(e);
 	while (++i < e->heigh - 1)
 	{
 		j = -1;
