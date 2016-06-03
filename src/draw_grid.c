@@ -6,11 +6,33 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:03:43 by telain            #+#    #+#             */
-/*   Updated: 2016/06/01 14:48:44 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/03 14:12:24 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	hori_line(t_env *e, int i, int j)
+{
+	e->x1 = (I - J) + e->start[0];
+	e->y1 = (I + J) / 3 + e->start[1]
+		- e->grid[i][j] * e->height / 3;
+	e->x2 = (I - JN) + e->start[0];
+	e->y2 = (I + JN) / 3 + e->start[1]
+		- e->grid[i][j + 1] * e->height / 3;
+	line(e, choose_color(e->grid[i][j]));
+}
+
+void	vert_line(t_env *e, int i, int j)
+{
+	e->x1 = (I - J) + e->start[0];
+	e->y1 = (I + J) / 3 + e->start[1]
+		- e->grid[i][j] * e->height / 3;
+	e->x2 = (IN - J) + e->start[0];
+	e->y2 = (IN + J) / 3 + e->start[1]
+		- e->grid[i + 1][j] * e->height / 3;
+	line(e, choose_color(e->grid[i][j]));
+}
 
 void	init_opt(t_env *e)
 {
@@ -25,7 +47,7 @@ int		choose_color(int h)
 {
 	int		color;
 
-	if (h < -20)
+	if (h <= -20)
 		color = 0x03224c;
 	else if (h < 1)
 		color = 0x0131b4;
@@ -33,18 +55,11 @@ int		choose_color(int h)
 		color = 0xf6dc12;
 	else if (h <= 20)
 		color = 0x3a9d23;
-	else if (h <= 30)
+	else if (h <= 40)
 		color = 0x88421d;
 	else
 		color = 0xffffff;
 	return (color);
-}
-
-void	write_opt(t_env *e)
-{
-	mlx_string_put(e->mlx, e->win, 0, 0, WHITE, "w/s --------> zoom in/out");
-	mlx_string_put(e->mlx, e->win, 0, 12, WHITE, "arrow keys -> move");
-	mlx_string_put(e->mlx, e->win, 0, 24, WHITE, "+/- --------> change height");
 }
 
 void	draw_grid(t_env *e)
@@ -53,7 +68,9 @@ void	draw_grid(t_env *e)
 	int		j;
 
 	i = -1;
-	write_opt(e);
+	mlx_string_put(e->mlx, e->win, 0, 0, WHITE, "w/s --------> zoom in/out");
+	mlx_string_put(e->mlx, e->win, 0, 12, WHITE, "arrow keys -> move");
+	mlx_string_put(e->mlx, e->win, 0, 24, WHITE, "+/- --------> change height");
 	if (e->size_i == 0 && e->size_j == 0)
 		init_opt(e);
 	while (++i < e->heigh - 1)
@@ -61,16 +78,8 @@ void	draw_grid(t_env *e)
 		j = -1;
 		while (++j < e->len - 1)
 		{
-			e->x1 = (I - J) + e->start[0];
-			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * e->height;
-			e->x2 = (I - JN) + e->start[0];
-			e->y2 = (I + JN) / 3 + e->start[1] - e->grid[i][j + 1] * e->height;
-			line(e, choose_color(e->grid[i][j]));
-			e->x1 = (I - J) + e->start[0];
-			e->y1 = (I + J) / 3 + e->start[1] - e->grid[i][j] * e->height;
-			e->x2 = (IN - J) + e->start[0];
-			e->y2 = (IN + J) / 3 + e->start[1] - e->grid[i + 1][j] * e->height;
-			line(e, choose_color(e->grid[i][j]));
+			vert_line(e, i, j);
+			hori_line(e, i, j);
 		}
 	}
 }

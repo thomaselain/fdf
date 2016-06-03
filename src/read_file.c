@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 18:43:49 by telain            #+#    #+#             */
-/*   Updated: 2016/06/01 15:18:02 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/03 14:20:21 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	check_file_type(t_env *e)
 				ft_putstr("Wrong file, please choose a \".fdf\" file\n");
 				exit(0);
 			}
-			else if (ft_strlen(line) > 2000)
+			else if (ft_strlen(line) > 2000 || ft_strlen(line) < 1)
 			{
-				ft_putstr("File too big, please choose a smaller one\n");
+				ft_putstr("File size invalid, please choose a smaller one\n");
 				exit(0);
 			}
 		}
@@ -92,7 +92,7 @@ void	read_file(t_env *e)
 		e->grid[n] = (int*)ft_memalloc(sizeof(int) * (e->len + 1));
 		create_grid(e, line, n++);
 		e->heigh++;
-		ft_putendl(line);
+		ft_putstr(" ");
 	}
 	close(e->fd);
 }
