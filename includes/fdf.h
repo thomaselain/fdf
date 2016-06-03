@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:32:28 by telain            #+#    #+#             */
-/*   Updated: 2016/06/03 14:12:33 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/03 16:52:32 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_env
 	int			x2;
 	int			y1;
 	int			y2;
+	int			color;
 }				t_env;
 
 /*
@@ -94,7 +95,7 @@ void			oct_8(t_env *e, int dx, int dy, int color);
 /*
 ** draw_grid.c
 */
-int				choose_color(int h);
+int				choose_color(t_env *e, int h);
 void			hori_line(t_env *e, int i, int j);
 void			vert_line(t_env *e, int i, int j);
 void			draw_grid(t_env *e);
