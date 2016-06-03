@@ -6,7 +6,7 @@
 /*   By: telain <telain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 02:32:28 by telain            #+#    #+#             */
-/*   Updated: 2016/06/01 15:46:40 by telain           ###   ########.fr       */
+/*   Updated: 2016/06/03 14:12:33 by telain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@
 # define J j * e->size_j
 # define IN (i + 1) * e->size_i
 # define JN (j + 1) * e->size_j
-# define WIN_X 1400
-# define WIN_Y 1000
+# define WIN_X 1200
+# define WIN_Y 900
 
 typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
 	char		*file;
-	int			height;
-	int			fd;
 	int			**grid;
-	int			lines;
-	int			heigh;
-	int			len;
+	int			height;
+	int			start[2];
 	int			size_i;
 	int			size_j;
-	int			start[2];
+	int			heigh;
+	int			lines;
+	int			len;
+	int			fd;
 	int			x1;
 	int			x2;
 	int			y1;
@@ -95,7 +95,8 @@ void			oct_8(t_env *e, int dx, int dy, int color);
 ** draw_grid.c
 */
 int				choose_color(int h);
-void			write_opt(t_env *e);
+void			hori_line(t_env *e, int i, int j);
+void			vert_line(t_env *e, int i, int j);
 void			draw_grid(t_env *e);
 
 #endif
